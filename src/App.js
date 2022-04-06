@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import SearchBooks from './components/SearchBooks';
 import ListBooks from './components/ListBooks';
+import * as BooksAPI from './BooksAPI';
 
 class BooksApp extends React.Component {
   state = {
@@ -12,20 +13,29 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: false,
+    books: [],
   }
 
   toggleSearchPage = (b) => {
     this.setState({ showSearchPage: b });
   }
 
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({books}));
+        console.log(books);
+      });
+  }
+
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks toggleSearchPage={this.toggleSearchPage} />
+          <SearchBooks shelvedBooks={this.state.books} toggleSearchPage={this.toggleSearchPage} />
         ) : (
-          <ListBooks toggleSearchPage={this.toggleSearchPage} />
+          <ListBooks books={this.state.books} toggleSearchPage={this.toggleSearchPage} />
         )}
       </div>
     )
