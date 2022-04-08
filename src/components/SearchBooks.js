@@ -77,10 +77,8 @@ class SearchBooks extends Component {
 
         <div className="search-books-results">
           {query !== "" && (
-            <div className='results-count'>
-              {/* TODO: styling */}
-              <span>Now showing {searchResults.length} search results</span>
-              <button onClick={this.clearQuery}>Clear Search</button>
+            <div className='search-results-count'>
+              <span className='light-text'>(Now showing {searchResults.length} results)</span>
             </div>
           )}
           <ol className="books-grid">

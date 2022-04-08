@@ -118,6 +118,13 @@ button:active {
   outline: none;
 }
 
+.search-results-count {
+  width: 100%;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #999;
+}
+
 .search-books-results {
   padding: 80px 10px 20px;
 }
