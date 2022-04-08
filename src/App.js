@@ -1,5 +1,5 @@
 import React from 'react';
-// import * as BooksAPI from './BooksAPI';
+import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom';
 import './App.css';
 import SearchBooks from './components/SearchBooks';
 import ListBooks from './components/ListBooks';
@@ -13,12 +13,7 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
     books: [],
-  }
-
-  toggleSearchPage = (b) => {
-    this.setState({ showSearchPage: b });
   }
 
   componentDidMount() {
@@ -31,13 +26,33 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBooks shelvedBooks={this.state.books} toggleSearchPage={this.toggleSearchPage} />
-        ) : (
-          <ListBooks books={this.state.books} toggleSearchPage={this.toggleSearchPage} />
-        )}
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Navigate replace to={'/mybooks'} />} />
+          <Route 
+            path='/mybooks' 
+            element={
+              <ListBooks 
+                books={this.state.books} 
+              />
+            } 
+          />
+          <Route 
+            path='/search' 
+            element={
+              <SearchBooks 
+                shelvedBooks={this.state.books} 
+              />
+            } 
+          />
+          <Route
+            path="*"
+            element={
+              <h1>404 Not Found</h1>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     )
   }
 }

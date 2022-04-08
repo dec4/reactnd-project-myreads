@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import BookItem from './BookItem';
 import * as BooksAPI from '../BooksAPI';
 import { ShelfType } from '../types';
 
 class SearchBooks extends Component {
   static propTypes = {
-    toggleSearchPage: PropTypes.func.isRequired,
     shelvedBooks: PropTypes.array.isRequired,
   }
 
@@ -56,13 +56,15 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { toggleSearchPage, shelvedBooks } = this.props
+    const { shelvedBooks } = this.props
     const { query, searchResults } = this.state
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <button className="close-search" onClick={() => toggleSearchPage(false)}>Close</button>
+
+          <Link to="/mybooks" className="close-search">Close</Link>
+
           <div className="search-books-input-wrapper">
             <input 
               type="text" 
