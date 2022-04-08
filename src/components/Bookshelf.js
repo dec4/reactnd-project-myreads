@@ -23,7 +23,7 @@ class Bookshelf extends Component {
                     id={book.id}
                     title={book.title}
                     authors={book.authors}
-                    image={book.imageLinks.smallThumbnail}
+                    image={book.imageLinks ? book.imageLinks.thumbnail : "" /*TODO: ensure this works by moving from search*/}
                     shelf={book.shelf}
                   />
                 </li>

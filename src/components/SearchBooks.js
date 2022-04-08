@@ -34,6 +34,10 @@ class SearchBooks extends Component {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      this.setState(() => ({
+        searchResults: [],
+      }));
     }
   }
 
@@ -73,7 +77,7 @@ class SearchBooks extends Component {
           {query !== "" && (
             <div className='results-count'>
               {/* TODO: styling */}
-              <span>Now showing {searchResults.length} books</span>
+              <span>Now showing {searchResults.length} search results</span>
               <button onClick={this.clearQuery}>Clear Search</button>
             </div>
           )}
@@ -86,7 +90,7 @@ class SearchBooks extends Component {
                     id={book.id}
                     title={book.title}
                     authors={book.authors}
-                    image={book.imageLinks.smallThumbnail}
+                    image={book.imageLinks ? book.imageLinks.smallThumbnail : ""}
                     shelf={match ? match.shelf : ShelfType.NONE}
                   />
                 </li>
