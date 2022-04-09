@@ -82,15 +82,10 @@ class SearchBooks extends Component {
           <ol className="books-grid">
             {searchResults.map((book) => {
               const match = shelvedBooks.filter((b) => b.id === book.id)[0];
+              book.shelf = match ? match.shelf : ShelfType.NONE;
               return (
                 <li key={book.id}>
-                  <BookItem
-                    id={book.id}
-                    title={book.title}
-                    authors={book.authors}
-                    image={book.imageLinks ? book.imageLinks.smallThumbnail : ""}
-                    shelf={match ? match.shelf : ShelfType.NONE}
-                  />
+                  <BookItem book={book} />
                 </li>
               )
             })}

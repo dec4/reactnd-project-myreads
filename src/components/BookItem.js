@@ -5,27 +5,31 @@ import { ShelfType } from '../types';
 
 class BookItem extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string,
-    authors: PropTypes.array,
-    image: PropTypes.string,
-    shelf: PropTypes.string,
+    book: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
-    let element = document.getElementById(`${this.props.id}-shelf`);
-    element.value = this.props.shelf;
+    const { id, shelf } = this.props.book;
+    let element = document.getElementById(`${id}-shelf`);
+    element.value = shelf ? shelf : ShelfType.NONE;
   }
 
   render() {
-    const book = this.props;
+    const {
+      id,
+      title="",
+      authors=[],
+      imageLinks={},
+      shelf=ShelfType.NONE,
+    } = this.props.book;
+    const imageLink = imageLinks.thumbnail;
 
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.image}")` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${imageLink}")` }}></div>
           <div className="book-shelf-changer">
-            <select id={`${book.id}-shelf`}>
+            <select id={`${id}-shelf`}>
               <option value="move" disabled>Move to...</option>
               <option value={ShelfType.CURRENTLY_READING}>Currently Reading</option>
               <option value={ShelfType.WANT_TO_READ}>Want to Read</option>
@@ -34,18 +38,11 @@ class BookItem extends Component {
             </select>
           </div>
         </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.join(', ')}</div>
+        <div className="book-title">{title}</div>
+        <div className="book-authors">{authors.join(', ')}</div>
       </div>
     )
   }
-}
-
-BookItem.defaultProps = {
-  title: "",
-  authors: [],
-  image: "",
-  shelf: ShelfType.NONE,
 }
 
 export default BookItem;
