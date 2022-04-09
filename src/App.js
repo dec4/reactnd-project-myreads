@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import SearchBooks from './components/SearchBooks';
 import ListBooks from './components/ListBooks';
@@ -10,9 +10,8 @@ class BooksApp extends React.Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route index element={<Navigate replace to={'/mybooks'} />} />
           <Route 
-            path='/mybooks' 
+            exact path='/' 
             element={
               <BookAppProvider>
                 <ListBooks />
