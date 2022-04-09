@@ -9,7 +9,6 @@ class ListBooks extends Component {
 
   filterBooksByShelf = (shelf) => {
     const res = this.context.books.filter((book) => book.shelf === shelf);
-    console.log(shelf, res);
     return res;
   }
 
