@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf';
 import { ShelfType } from '../types';
+import BookAppContext from '../AppContext';
 
 class ListBooks extends Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-  }
+  static contextType = BookAppContext;
 
   filterBooksByShelf = (shelf) => {
-    const res = this.props.books.filter((book) => book.shelf === shelf);
+    const res = this.context.books.filter((book) => book.shelf === shelf);
     console.log(shelf, res);
     return res;
   }

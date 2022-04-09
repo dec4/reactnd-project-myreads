@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BookItem from './BookItem';
 import * as BooksAPI from '../BooksAPI';
 import { ShelfType } from '../types';
+import BookAppContext from '../AppContext';
 
 class SearchBooks extends Component {
-  static propTypes = {
-    shelvedBooks: PropTypes.array.isRequired,
-  }
+  static contextType = BookAppContext;
 
   state = {
     query: "",
@@ -56,7 +54,7 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { shelvedBooks } = this.props
+    const { books: shelvedBooks } = this.context
     const { query, searchResults } = this.state
 
     return (
