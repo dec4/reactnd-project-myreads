@@ -14,13 +14,16 @@ class BookAppProvider extends Component {
     getAllBooks = () => {
       BooksAPI.getAll()
         .then((books) => {
-          this.setState(() => ({books}));
+          this.setState(() => ({ books: books}));
         });
     }
 
     updateShelf = (id, newShelf) => {
       BooksAPI.update(id, newShelf)
-        .then(this.getAllBooks());
+        .then((res) => {
+          this.getAllBooks();
+        });
+
     }
 
     render() {
