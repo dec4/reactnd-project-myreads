@@ -25,6 +25,7 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 ## Ideas to extend this project
 
 Here I am listing ideas outside the project requirements that could be interesting to implement:
+* Use [debouncing](https://www.geeksforgeeks.org/debouncing-in-javascript/) (Suggested by Udacity reviewer!)
 * Drag and Drop bookshelves
 * Add pagination to search (if supported by api)
 * Add book details page

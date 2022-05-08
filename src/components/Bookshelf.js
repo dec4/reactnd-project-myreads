@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import BookItem from './BookItem';
 import PropTypes from 'prop-types';
 
+// TODO: Suggestion from Udacity reviewer
+// Prefer using a functional component over class component
+// when a component does not have its own state. In fact, 
+// after the introduction of Hooks, we can use a functional 
+// component in almost all cases. 
+// React Hooks: https://reactjs.org/docs/hooks-intro.html
+
 class Bookshelf extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
